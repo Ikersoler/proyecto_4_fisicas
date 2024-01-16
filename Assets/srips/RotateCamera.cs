@@ -8,14 +8,6 @@ public class RotateCamera : MonoBehaviour
     private float Horizontalimput;
 
 
-
-    
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
         Horizontalimput = Input.GetAxis("Horizontal");

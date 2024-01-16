@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
 
+    private float lowerLimit = -3f;
+
+    private SpawnManager spawnManager;
 
     private void Awake()
     {
@@ -20,9 +23,26 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("player");
+
+
+        spawnManager= FindObjectOfType<SpawnManager>();
+
+
+
     }
 
     private void Update()
+    {
+        GoToPlayer();
+
+        if (transform.position.y < lowerLimit)
+        {
+            spawnManager.EnemyDestroy();
+            Destroy(gameObject);
+        }
+    }
+
+    private void GoToPlayer()
     {
         Vector3 direction = player.transform.position - transform.position;
 
@@ -30,6 +50,4 @@ public class Enemy : MonoBehaviour
 
         enemyRigidbody.AddForce(direction * speed);
     }
-
-
 }
